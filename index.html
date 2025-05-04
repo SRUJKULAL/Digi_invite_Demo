@@ -71,8 +71,8 @@
     .map-wrapper {
       position: absolute;
       top: 46%;
-      left: 56px; /* Position on the left side */
-      transform: translateY(-50%); /* Vertically center */
+      left: 56px;
+      transform: translateY(-50%);
       z-index: 10;
     }
 
@@ -95,15 +95,15 @@
 
     .music-play-btn {
       position: fixed;
-      bottom: 40px; /* Raised position */
+      bottom: 40px;
       right: 20px;
       background: rgba(44, 13, 26, 0.8);
       color: #FFD700;
       border: none;
-      padding: 6px; /* Reduced padding for smaller button */
+      padding: 6px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 9px; /* Reduced to half (from 18px to 9px) */
+      font-size: 9px;
       z-index: 100;
       box-shadow: 0 0 8px #FFD700;
     }
@@ -185,7 +185,7 @@
 
       <!-- Map Link -->
       <div class="map-wrapper fade-in">
-        <a class="map-link" href="https://maps.app.goo.gl/Aqzs7LZVgQoX5ViR8" target="_blank">
+        <a class="map-link" id="mapLink" href="https://maps.app.goo.gl/Aqzs7LZVgQoX5ViR8" target="_blank">
           <i class="fas fa-map-marker-alt"></i>
         </a>
       </div>
@@ -224,6 +224,7 @@
       const invitationDiv = document.getElementById('invitation');
       const postEventDiv = document.getElementById('post-event');
       const timerDiv = document.getElementById('timer');
+      const mapLink = document.getElementById('mapLink');
 
       // Define event dates using Date.UTC for consistent timezone handling
       const eventDate = Date.UTC(2025, 5, 20, 4, 30); // June 20, 2025, 10:00 AM IST (4:30 AM UTC)
@@ -290,6 +291,16 @@
         // Also allow the music button to trigger playback
         playMusicBtn.addEventListener('touchstart', playMusicOnce, { once: true });
         playMusicBtn.addEventListener('click', playMusicOnce, { once: true });
+
+        // Play music and redirect to map on map icon click
+        function handleMapClick(event) {
+          event.preventDefault(); // Prevent default behavior
+          playMusicOnce(event); // Play music on map click
+          window.location.href = mapLink.href; // Redirect to map
+        }
+
+        mapLink.addEventListener('touchstart', handleMapClick);
+        mapLink.addEventListener('click', handleMapClick);
 
         function handleCalendarClick(event) {
           event.preventDefault(); // Prevent default behavior
