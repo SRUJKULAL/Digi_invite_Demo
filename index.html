@@ -70,9 +70,9 @@
 
     .map-wrapper {
       position: absolute;
-      bottom: 60px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 50%;
+      left: 20px; /* Position on the left side */
+      transform: translateY(-50%); /* Vertically center */
       z-index: 10;
     }
 
@@ -95,15 +95,15 @@
 
     .music-play-btn {
       position: fixed;
-      bottom: 20px;
+      bottom: 40px; /* Raised position */
       right: 20px;
       background: rgba(44, 13, 26, 0.8);
       color: #FFD700;
       border: none;
-      padding: 12px;
+      padding: 6px; /* Reduced padding for smaller button */
       border-radius: 50%;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 9px; /* Reduced to half (from 18px to 9px) */
       z-index: 100;
       box-shadow: 0 0 8px #FFD700;
     }
@@ -161,7 +161,7 @@
     .gallery video {
       width: 95%;
       max-width: 450px;
-      height: auto;
+      height: 100%;
       object-fit: contain;
       border-radius: 8px;
       box-shadow: 0 0 8px #FFD700;
@@ -300,7 +300,6 @@
           if (isIOS) {
             window.location.href = "https://SRUJKULAL.github.io/Digi_invite_Demo/vinod_riya_wedding.ics";
           } else {
-            // Use a universal link to open the Google Calendar app
             const calendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vinod+%26+Riya+Wedding&dates=20250620T043000Z/20250620T063000Z&details=Join+us+on+June+20,+2025,+at+10:00+AM!&location=123%20Anywhere%20St.%2C%20Any%20City%2C%20ST%2012345&sf=true&output=xml";
             window.location.href = calendarUrl;
           }
