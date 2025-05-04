@@ -235,6 +235,30 @@
       postEventDiv.classList.add('hidden');
       invitationDiv.classList.remove('hidden');
 
+      // Start the timer immediately
+      function updateTimer() {
+        const now = Date.now();
+        const distance = eventDate - now;
+
+        if (distance < 0) {
+          // Event has started, but still within 5 hours
+          document.getElementById("timer").innerHTML = "Event Started!";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML =
+          `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      // Initialize timer immediately
+      updateTimer();
+      setInterval(updateTimer, 1000);
+
       if (!showPreEvent) {
         // After 5 hours post-event, show thank you message and gallery
         postEventDiv.classList.remove('hidden');
@@ -243,6 +267,7 @@
         // Before 5 hours post-event, show invitation and run timer
         function playMusicOnce(event) {
           event.preventDefault(); // Prevent default touch behavior on mobile
+          event.stopPropagation(); // Stop event from bubbling up
           try {
             if (bgMusic.paused) {
               bgMusic.play().then(() => {
@@ -263,31 +288,10 @@
         // Also allow the music button to trigger playback
         playMusicBtn.addEventListener('touchstart', playMusicOnce, { once: true });
         playMusicBtn.addEventListener('click', playMusicOnce, { once: true });
-
-        function updateTimer() {
-          const now = Date.now();
-          const distance = eventDate - now;
-
-          if (distance < 0) {
-            // Event has started, but still within 5 hours
-            document.getElementById("timer").innerHTML = "Event Started!";
-            return;
-          }
-
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-          document.getElementById("timer").innerHTML =
-            `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }
-
-        updateTimer();
-        setInterval(updateTimer, 1000);
       }
 
-      function handleCalendarClick() {
+      function handleCalendarClick(event) {
+        event.stopPropagation(); // Prevent touch from triggering music
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
         const isAndroid = /Android/.test(navigator.userAgent);
 
