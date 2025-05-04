@@ -7,9 +7,9 @@
   <!-- Social media preview -->
   <meta property="og:title" content="Vinod & Riya Wedding" />
   <meta property="og:description" content="Thank you for celebrating with us on June 20, 2025!" />
-  <meta property="og:image" content="https://SRUJKULAL.github.io/engagement-invite/thumbnail.jpg" />
+  <meta property="og:image" content="https://SRUJKULAL.github.io/Digi_invite_Demo/thumbnail.jpg" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://SRUJKULAL.github.io/engagement-invite/" />
+  <meta property="og:url" content="https://SRUJKULAL.github.io/Digi_invite_Demo/" />
 
   <title>Vinod & Riya Wedding</title>
 
@@ -174,7 +174,7 @@
   <div class="container">
     <div id="invitation">
       <video id="engagementVideo" autoplay muted loop playsinline>
-        <source src="https://SRUJKULAL.github.io/engagement-invite/Yashaswi_eng.mp4" type="video/mp4" />
+        <source src="https://SRUJKULAL.github.io/Digi_invite_Demo/Yashaswi_eng.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -195,7 +195,7 @@
 
       <!-- Music -->
       <audio id="bgMusic" loop>
-        <source src="https://SRUJKULAL.github.io/engagement-invite/music.mp3" type="audio/mpeg" />
+        <source src="https://SRUJKULAL.github.io/Digi_invite_Demo/music.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
@@ -204,10 +204,10 @@
       <h1>Thank You for Celebrating With Us!</h1>
       <p>We are immensely grateful to everyone who joined us for Vinod & Riya's wedding on June 20, 2025. Relive the beautiful moments below!</p>
       <div class="gallery">
-        <img src="https://SRUJKULAL.github.io/engagement-invite/media/photo1.jpg" alt="Event Photo 1">
-        <img src="https://SRUJKULAL.github.io/engagement-invite/media/photo2.jpg" alt="Event Photo 2">
+        <img src="https://SRUJKULAL.github.io/Digi_invite_Demo/media/photo1.jpg" alt="Event Photo 1">
+        <img src="https://SRUJKULAL.github.io/Digi_invite_Demo/media/photo2.jpg" alt="Event Photo 2">
         <video controls preload="auto">
-          <source src="https://SRUJKULAL.github.io/engagement-invite/media/video.mp4" type="video/mp4">
+          <source src="https://SRUJKULAL.github.io/Digi_invite_Demo/media/video.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -218,63 +218,4 @@
   <script>
     const playMusicBtn = document.getElementById('playMusicBtn');
     const bgMusic = document.getElementById('bgMusic');
-    const invitationDiv = document.getElementById('invitation');
-    const postEventDiv = document.getElementById('post-event');
-    const eventDate = new Date("June 20, 2025 10:00:00").getTime(); // Event start time
-    const postEventSwitchDate = new Date("June 20, 2025 15:00:00").getTime(); // 5 hours after event (10:00 AM + 5 hours = 3:00 PM)
-    const now = new Date().getTime();
-
-    if (now > postEventSwitchDate) {
-      // After 5 hours post-event, show thank you message and gallery
-      postEventDiv.classList.remove('hidden');
-      invitationDiv.classList.add('hidden');
-    } else {
-      // Before 5 hours post-event, show invitation and run timer
-      function playMusicOnce() {
-        if (bgMusic.paused) {
-          bgMusic.play();
-          playMusicBtn.style.display = "none";
-          document.body.removeEventListener('click', playMusicOnce);
-        }
-      }
-
-      document.body.addEventListener('click', playMusicOnce);
-
-      function updateTimer() {
-        const now = new Date().getTime();
-        const distance = eventDate - now;
-
-        if (distance < 0) {
-          // Event has started, but still within 5 hours
-          document.getElementById("timer").innerHTML = "Event Started!";
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("timer").innerHTML =
-          `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
-
-      updateTimer();
-      setInterval(updateTimer, 1000);
-    }
-
-    function handleCalendarClick() {
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-      const isAndroid = /Android/.test(navigator.userAgent);
-
-      if (isIOS) {
-        window.location.href = "https://SRUJKULAL.github.io/engagement-invite/vinod_riya_wedding.ics";
-      } else {
-        const googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vinod+%26+Riya+Wedding&dates=20250620T043000Z/20250620T063000Z&details=Join+us+on+June+20,+2025,+at+10:00+AM!&location=123%20Anywhere%20St.%2C%20Any%20City%2C%20ST%2012345&sf=true&output=xml";
-        window.open(googleCalendarUrl, "_blank");
-      }
-    }
-  </script>
-</head>
-<body>
-</html>
+    const invitationDiv
