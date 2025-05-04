@@ -221,17 +221,18 @@
     const invitationDiv = document.getElementById('invitation');
     const postEventDiv = document.getElementById('post-event');
 
-    // Use UTC to ensure consistent date handling
+    // Define event dates using Date.UTC for consistent timezone handling
     const eventDate = Date.UTC(2025, 5, 20, 4, 30); // June 20, 2025, 10:00 AM IST (4:30 AM UTC)
     const postEventSwitchDate = Date.UTC(2025, 5, 20, 9, 30); // June 20, 2025, 3:00 PM IST (9:30 AM UTC)
-    const now = new Date().getTime();
+    const now = Date.now();
 
-    if (now > postEventSwitchDate) {
-      // After 5 hours post-event, show thank you message and gallery
-      postEventDiv.classList.remove('hidden');
-      invitationDiv.classList.add('hidden');
-    } else {
-      // Before 5 hours post-event, show invitation and run timer
+    // Fallback: Ensure pre-event page shows if date is in the future
+    const currentYear = new Date(now).getFullYear();
+    if (currentYear < 2025 || now < postEventSwitchDate) {
+      // Show pre-event page
+      invitationDiv.classList.remove('hidden');
+      postEventDiv.classList.add('hidden');
+
       function playMusicOnce() {
         if (bgMusic.paused) {
           bgMusic.play();
@@ -243,7 +244,7 @@
       document.body.addEventListener('click', playMusicOnce);
 
       function updateTimer() {
-        const now = new Date().getTime();
+        const now = Date.now();
         const distance = eventDate - now;
 
         if (distance < 0) {
@@ -263,6 +264,10 @@
 
       updateTimer();
       setInterval(updateTimer, 1000);
+    } else {
+      // After 5 hours post-event, show thank you message and gallery
+      postEventDiv.classList.remove('hidden');
+      invitationDiv.classList.add('hidden');
     }
 
     function handleCalendarClick() {
