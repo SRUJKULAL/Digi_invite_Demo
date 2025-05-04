@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- Social media preview -->
+  <meta property="og:title" content="Vinod & Riya Wedding" />
+  <meta property="og:description" content="Thank you for celebrating with us on June 20, 2025!" />
+  <meta property="og:image" content="https://SRUJKULAL.github.io/engagement-invite/thumbnail.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://SRUJKULAL.github.io/engagement-invite/" />
+
+  <title>Vinod & Riya Wedding</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #4a1d2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: black;
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.2s ease-in-out forwards;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    #timer {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: #FFD700;
+      background: #2c0d1a;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      z-index: 10;
+      box-shadow: 0 0 8px #FFD700;
+    }
+
+    .map-wrapper {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .map-link {
+      font-size: 15px;
+      color: #FFD700;
+      text-decoration: none;
+      padding: 6px;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, color 0.3s ease;
+      box-shadow: 0 0 8px #FFD700;
+    }
+
+    .map-link:hover {
+      color: white;
+      background-color: rgba(255, 215, 0, 0.2);
+      transform: scale(1.1);
+    }
+
+    .music-play-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(44, 13, 26, 0.8);
+      color: #FFD700;
+      border: none;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 10;
+    }
+
+    .music-play-btn:hover {
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .post-event {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(44, 13, 26, 0.9);
+      color: #FFD700;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 15px;
+      box-sizing: border-box;
+      z-index: 10;
+      overflow-y: auto;
+    }
+
+    .post-event h1 {
+      font-size: 1.5em;
+      margin: 0 0 10px;
+    }
+
+    .post-event p {
+      font-size: 1em;
+      margin: 0 0 15px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+      max-height: 60vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 20px;
+    }
+
+    .gallery img,
+    .gallery video {
+      width: 95%;
+      max-width: 450px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 8px #FFD700;
+    }
+
+    .gallery video {
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="invitation">
+      <video id="engagementVideo" autoplay muted loop playsinline>
+        <source src="https://SRUJKULAL.github.io/engagement-invite/Yashaswi_eng.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Timer Box (clickable) -->
+      <div id="timer" class="fade-in" onclick="handleCalendarClick()" title="Click to add to calendar"></div>
+
+      <!-- Map Link -->
+      <div class="map-wrapper fade-in">
+        <a class="map-link" href="https://maps.app.goo.gl/dummy" target="_blank">
+          <i class="fas fa-map-marker-alt"></i>
+        </a>
+      </div>
+
+      <!-- Music Play Button -->
+      <button class="music-play-btn fade-in" id="playMusicBtn">
+        <i class="fas fa-music"></i>
+      </button>
+
+      <!-- Music -->
+      <audio id="bgMusic" loop>
+        <source src="https://SRUJKULAL.github.io/engagement-invite/music.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div id="post-event" class="post-event hidden">
+      <h1>Thank You for Celebrating With Us!</h1>
+      <p>We are immensely grateful to everyone who joined us for Vinod & Riya's wedding on June 20, 2025. Relive the beautiful moments below!</p>
+      <div class="gallery">
+        <img src="https://SRUJKULAL.github.io/engagement-invite/media/photo1.jpg" alt="Event Photo 1">
+        <img src="https://SRUJKULAL.github.io/engagement-invite/media/photo2.jpg" alt="Event Photo 2">
+        <video controls preload="auto">
+          <source src="https://SRUJKULAL.github.io/engagement-invite/media/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <p>With love and gratitude, <br>The Kulal Family</p>
+    </div>
+  </div>
+
+  <script>
+    const playMusicBtn = document.getElementById('playMusicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const invitationDiv = document.getElementById('invitation');
+    const postEventDiv = document.getElementById('post-event');
+    const eventDate = new Date("June 20, 2025 10:00:00").getTime(); // Event start time
+    const postEventSwitchDate = new Date("June 20, 2025 15:00:00").getTime(); // 5 hours after event (10:00 AM + 5 hours = 3:00 PM)
+    const now = new Date().getTime();
+
+    if (now > postEventSwitchDate) {
+      // After 5 hours post-event, show thank you message and gallery
+      postEventDiv.classList.remove('hidden');
+      invitationDiv.classList.add('hidden');
+    } else {
+      // Before 5 hours post-event, show invitation and run timer
+      function playMusicOnce() {
+        if (bgMusic.paused) {
+          bgMusic.play();
+          playMusicBtn.style.display = "none";
+          document.body.removeEventListener('click', playMusicOnce);
+        }
+      }
+
+      document.body.addEventListener('click', playMusicOnce);
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+
+        if (distance < 0) {
+          // Event has started, but still within 5 hours
+          document.getElementById("timer").innerHTML = "Event Started!";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML =
+          `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+
+    function handleCalendarClick() {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isAndroid = /Android/.test(navigator.userAgent);
+
+      if (isIOS) {
+        window.location.href = "https://SRUJKULAL.github.io/engagement-invite/yashaswi_ranjith_engagement.ics";
+      } else {
+        const googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vinod+%26+Riya+Wedding&dates=20250620T043000Z/20250620T063000Z&details=Join+us+on+June+20,+2025,+at+10:00+AM!&location=123%20Anywhere%20St.%2C%20Any%20City%2C%20ST%2012345&sf=true&output=xml";
+        window.open(googleCalendarUrl, "_blank");
+      }
+    }
+  </script>
+</head>
+<body>
+</html>
