@@ -93,17 +93,18 @@
     }
 
     .music-play-btn {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
+      position: fixed; /* Use fixed to ensure visibility on mobile */
+      bottom: 20px;
+      right: 20px;
       background: rgba(44, 13, 26, 0.8);
       color: #FFD700;
       border: none;
-      padding: 8px;
+      padding: 12px; /* Slightly larger padding for better touch target */
       border-radius: 50%;
       cursor: pointer;
-      font-size: 16px;
-      z-index: 10;
+      font-size: 18px; /* Larger icon for better visibility */
+      z-index: 100; /* High z-index to ensure it’s on top */
+      box-shadow: 0 0 8px #FFD700;
     }
 
     .music-play-btn:hover {
@@ -175,7 +176,7 @@
     <div id="invitation">
       <video id="engagementVideo" autoplay muted loop playsinline>
         <source src="https://SRUJKULAL.github.io/Digi_invite_Demo/Yashaswi_eng.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+        Your browser does not support the video tag. Please try a different browser or contact support.
       </video>
 
       <!-- Timer Box (clickable) -->
@@ -189,7 +190,7 @@
       </div>
 
       <!-- Music Play Button -->
-      <button class="music-play-btn fade-in" id="playMusicBtn" onclick="playMusicOnce()">
+      <button class="music-play-btn fade-in" id="playMusicBtn">
         <i class="fas fa-music"></i>
       </button>
 
@@ -240,7 +241,8 @@
         invitationDiv.classList.add('hidden');
       } else {
         // Before 5 hours post-event, show invitation and run timer
-        function playMusicOnce() {
+        function playMusicOnce(event) {
+          event.preventDefault(); // Prevent default touch behavior on mobile
           if (bgMusic.paused) {
             bgMusic.play().catch(error => {
               console.error("Audio playback failed:", error);
@@ -249,7 +251,7 @@
           }
         }
 
-        // Use touchstart for mobile and click for desktop
+        // Add event listeners for both touch and click on the button
         playMusicBtn.addEventListener('touchstart', playMusicOnce, { once: true });
         playMusicBtn.addEventListener('click', playMusicOnce, { once: true });
 
