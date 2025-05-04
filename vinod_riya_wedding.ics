@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Your Organization//NONSGML v1.0//EN
+BEGIN:VEVENT
+UID:vinod_riya_wedding_20250620
+DTSTAMP:20250504T065400Z
+DTSTART:20250620T100000
+DTEND:20250620T120000
+SUMMARY:Vinod & Riya Wedding
+DESCRIPTION:Join us for the wedding of Vinod and Riya! We expect your presence at our special day.
+LOCATION:123 Anywhere St., Any City, ST 12345
+END:VEVENT
+END:VCALENDAR
