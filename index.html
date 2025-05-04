@@ -256,7 +256,11 @@
           }
         }
 
-        // Add event listeners for both touch and click on the button
+        // Play music on any touch/click on the invitation div
+        invitationDiv.addEventListener('touchstart', playMusicOnce, { once: true });
+        invitationDiv.addEventListener('click', playMusicOnce, { once: true });
+
+        // Also allow the music button to trigger playback
         playMusicBtn.addEventListener('touchstart', playMusicOnce, { once: true });
         playMusicBtn.addEventListener('click', playMusicOnce, { once: true });
 
