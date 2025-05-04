@@ -281,25 +281,25 @@
           }
         }
 
-        // Play music on any touch/click on the invitation div
-        invitationDiv.addEventListener('touchstart', playMusicOnce, { once: true });
-        invitationDiv.addEventListener('click', playMusicOnce, { once: true });
+        // Play music on any touch/click on the document
+        document.addEventListener('touchstart', playMusicOnce, { once: true });
+        document.addEventListener('click', playMusicOnce, { once: true });
 
         // Also allow the music button to trigger playback
         playMusicBtn.addEventListener('touchstart', playMusicOnce, { once: true });
         playMusicBtn.addEventListener('click', playMusicOnce, { once: true });
-      }
 
-      function handleCalendarClick(event) {
-        event.stopPropagation(); // Prevent touch from triggering music
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        const isAndroid = /Android/.test(navigator.userAgent);
+        function handleCalendarClick(event) {
+          event.stopPropagation(); // Prevent touch from triggering music
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+          const isAndroid = /Android/.test(navigator.userAgent);
 
-        if (isIOS) {
-          window.location.href = "https://SRUJKULAL.github.io/Digi_invite_Demo/vinod_riya_wedding.ics";
-        } else {
-          const googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vinod+%26+Riya+Wedding&dates=20250620T043000Z/20250620T063000Z&details=Join+us+on+June+20,+2025,+at+10:00+AM!&location=123%20Anywhere%20St.%2C%20Any%20City%2C%20ST%2012345&sf=true&output=xml";
-          window.open(googleCalendarUrl, "_blank");
+          if (isIOS) {
+            window.location.href = "https://SRUJKULAL.github.io/Digi_invite_Demo/vinod_riya_wedding.ics";
+          } else {
+            const googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vinod+%26+Riya+Wedding&dates=20250620T043000Z/20250620T063000Z&details=Join+us+on+June+20,+2025,+at+10:00+AM!&location=123%20Anywhere%20St.%2C%20Any%20City%2C%20ST%2012345&sf=true&output=xml";
+            window.open(googleCalendarUrl, "_blank");
+          }
         }
       }
     } catch (error) {
