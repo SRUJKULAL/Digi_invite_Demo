@@ -93,17 +93,17 @@
     }
 
     .music-play-btn {
-      position: fixed; /* Use fixed to ensure visibility on mobile */
+      position: fixed;
       bottom: 20px;
       right: 20px;
       background: rgba(44, 13, 26, 0.8);
       color: #FFD700;
       border: none;
-      padding: 12px; /* Slightly larger padding for better touch target */
+      padding: 12px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 18px; /* Larger icon for better visibility */
-      z-index: 100; /* High z-index to ensure it’s on top */
+      font-size: 18px;
+      z-index: 100;
       box-shadow: 0 0 8px #FFD700;
     }
 
@@ -243,11 +243,16 @@
         // Before 5 hours post-event, show invitation and run timer
         function playMusicOnce(event) {
           event.preventDefault(); // Prevent default touch behavior on mobile
-          if (bgMusic.paused) {
-            bgMusic.play().catch(error => {
-              console.error("Audio playback failed:", error);
-            });
-            playMusicBtn.style.display = "none";
+          try {
+            if (bgMusic.paused) {
+              bgMusic.play().then(() => {
+                playMusicBtn.style.display = "none";
+              }).catch(error => {
+                console.error("Audio playback failed:", error);
+              });
+            }
+          } catch (error) {
+            console.error("Error playing audio:", error);
           }
         }
 
