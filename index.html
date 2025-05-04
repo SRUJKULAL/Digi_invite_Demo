@@ -65,6 +65,7 @@
       font-size: 14px;
       z-index: 10;
       box-shadow: 0 0 8px #FFD700;
+      cursor: pointer;
     }
 
     .map-wrapper {
@@ -180,7 +181,7 @@
       </video>
 
       <!-- Timer Box (clickable) -->
-      <div id="timer" class="fade-in" onclick="handleCalendarClick()" title="Click to add to calendar"></div>
+      <div id="timer" class="fade-in" title="Click to add to calendar"></div>
 
       <!-- Map Link -->
       <div class="map-wrapper fade-in">
@@ -222,6 +223,7 @@
       const bgMusic = document.getElementById('bgMusic');
       const invitationDiv = document.getElementById('invitation');
       const postEventDiv = document.getElementById('post-event');
+      const timerDiv = document.getElementById('timer');
 
       // Define event dates using Date.UTC for consistent timezone handling
       const eventDate = Date.UTC(2025, 5, 20, 4, 30); // June 20, 2025, 10:00 AM IST (4:30 AM UTC)
@@ -282,14 +284,15 @@
         }
 
         // Play music on any touch/click on the document
-        document.addEventListener('touchstart', playMusicOnce, { once: true });
-        document.addEventListener('click', playMusicOnce, { once: true });
+        document.body.addEventListener('touchstart', playMusicOnce, { once: true });
+        document.body.addEventListener('click', playMusicOnce, { once: true });
 
         // Also allow the music button to trigger playback
         playMusicBtn.addEventListener('touchstart', playMusicOnce, { once: true });
         playMusicBtn.addEventListener('click', playMusicOnce, { once: true });
 
         function handleCalendarClick(event) {
+          event.preventDefault(); // Prevent default behavior
           event.stopPropagation(); // Prevent touch from triggering music
           const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
           const isAndroid = /Android/.test(navigator.userAgent);
@@ -301,6 +304,10 @@
             window.open(googleCalendarUrl, "_blank");
           }
         }
+
+        // Attach calendar click handler to the timer
+        timerDiv.addEventListener('touchstart', handleCalendarClick);
+        timerDiv.addEventListener('click', handleCalendarClick);
       }
     } catch (error) {
       console.error("An error occurred:", error);
