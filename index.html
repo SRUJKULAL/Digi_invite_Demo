@@ -218,4 +218,69 @@
   <script>
     const playMusicBtn = document.getElementById('playMusicBtn');
     const bgMusic = document.getElementById('bgMusic');
-    const invitationDiv
+    const invitationDiv = document.getElementById('invitation');
+    const postEventDiv = document.getElementById('post-event');
+    const eventDate = new Date("2025-06-20T10:00:00+05:30").getTime(); // Event start time in IST
+    const postEventSwitchDate = new Date("2025-06-20T15:00:00+05:30").getTime(); // 5 hours after event in IST
+    const now = new Date().getTime();
+
+    // Debugging: Log the dates to verify
+    console.log("Current Date:", new Date(now));
+    console.log("Event Date:", new Date(eventDate));
+    console.log("Post-Event Switch Date:", new Date(postEventSwitchDate));
+    console.log("Is now > postEventSwitchDate?", now > postEventSwitchDate);
+
+    if (now > postEventSwitchDate) {
+      // After 5 hours post-event, show thank you message and gallery
+      postEventDiv.classList.remove('hidden');
+      invitationDiv.classList.add('hidden');
+    } else {
+      // Before 5 hours post-event, show invitation and run timer
+      function playMusicOnce() {
+        if (bgMusic.paused) {
+          bgMusic.play();
+          playMusicBtn.style.display = "none";
+          document.body.removeEventListener('click', playMusicOnce);
+        }
+      }
+
+      document.body.addEventListener('click', playMusicOnce);
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+
+        if (distance < 0) {
+          // Event has started, but still within 5 hours
+          document.getElementById("timer").innerHTML = "Event Started!";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML =
+          `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+
+    function handleCalendarClick() {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isAndroid = /Android/.test(navigator.userAgent);
+
+      if (isIOS) {
+        window.location.href = "https://SRUJKULAL.github.io/Digi_invite_Demo/vinod_riya_wedding.ics";
+      } else {
+        const googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vinod+%26+Riya+Wedding&dates=20250620T043000Z/20250620T063000Z&details=Join+us+on+June+20,+2025,+at+10:00+AM!&location=123%20Anywhere%20St.%2C%20Any%20City%2C%20ST%2012345&sf=true&output=xml";
+        window.open(googleCalendarUrl, "_blank");
+      }
+    }
+  </script>
+</head>
+<body>
+</html>
