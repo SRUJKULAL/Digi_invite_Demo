@@ -220,15 +220,11 @@
     const bgMusic = document.getElementById('bgMusic');
     const invitationDiv = document.getElementById('invitation');
     const postEventDiv = document.getElementById('post-event');
-    const eventDate = new Date("2025-06-20T10:00:00+05:30").getTime(); // Event start time in IST
-    const postEventSwitchDate = new Date("2025-06-20T15:00:00+05:30").getTime(); // 5 hours after event in IST
-    const now = new Date().getTime();
 
-    // Debugging: Log the dates to verify
-    console.log("Current Date:", new Date(now));
-    console.log("Event Date:", new Date(eventDate));
-    console.log("Post-Event Switch Date:", new Date(postEventSwitchDate));
-    console.log("Is now > postEventSwitchDate?", now > postEventSwitchDate);
+    // Use UTC to ensure consistent date handling
+    const eventDate = Date.UTC(2025, 5, 20, 4, 30); // June 20, 2025, 10:00 AM IST (4:30 AM UTC)
+    const postEventSwitchDate = Date.UTC(2025, 5, 20, 9, 30); // June 20, 2025, 3:00 PM IST (9:30 AM UTC)
+    const now = new Date().getTime();
 
     if (now > postEventSwitchDate) {
       // After 5 hours post-event, show thank you message and gallery
