@@ -269,7 +269,6 @@
         // Before 5 hours post-event, show invitation and run timer
         function playMusicOnce(event) {
           event.preventDefault(); // Prevent default touch behavior on mobile
-          event.stopPropagation(); // Stop event from bubbling up
           try {
             if (bgMusic.paused) {
               bgMusic.play().then(() => {
@@ -293,7 +292,8 @@
 
         function handleCalendarClick(event) {
           event.preventDefault(); // Prevent default behavior
-          event.stopPropagation(); // Prevent touch from triggering music
+          // Play music even when timer is clicked
+          playMusicOnce(event);
           const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
           const isAndroid = /Android/.test(navigator.userAgent);
 
